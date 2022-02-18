@@ -8,5 +8,3 @@ function conectar(){
         }
    return $link;    
 }
-
-?>

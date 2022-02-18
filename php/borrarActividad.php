@@ -17,4 +17,3 @@ include("conexion_BD.php");
     mysqli_close($link);
     
     header("location:actividades.php");
-?>

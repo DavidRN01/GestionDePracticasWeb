@@ -29,4 +29,3 @@ else{
 
 //Cierre de la conexión a la BD
 mysqli_close($link);
-?>
