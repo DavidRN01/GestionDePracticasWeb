@@ -73,21 +73,43 @@ include("conexion_BD.php");
 
 	<div id="main">
 	
-	 
-	
-	<div id="content2">
-			<div>
-				<img id="alumno" src="../imagenes/user.png" style="width:10%"/>
-			</div>
-			<div style="margin-top:10px;">
-				<p id="nombre"><b>Nombre: </b></p>
-				<p id="dni"><b>DNI: </b></p>
-				<p id="telefono"><b>Teléfono: </b></p>
-				<p id="email"><b>Email: </b></p>
-				<p id="empresa"><b>Empresa: </b></p>
-				<p id="profesor"><b>Tutor: </b></p>
-			</div>
-	</div>
+    <?php
+    //Conectamos con la BD
+    $link=conectar();
+    $queryAlumno="SELECT * FROM alumno WHERE id=".$_SESSION['id_alumno'].";";
+    
+
+    
+    //Ejecutar consulta
+    $result=mysqli_query($link,$queryAlumno);
+	if($fila=mysqli_fetch_array($result)) {
+
+        //Sacamos los datos de la empresa
+        $queryEmpresa="SELECT * FROM empresa WHERE id=".$fila['empresa_id'].";";
+        $resultEmpresa=mysqli_query($link,$queryEmpresa);
+        $nombreEmpresa=mysqli_fetch_array($resultEmpresa);
+
+        //Sacamos los datos del tutor
+        $queryTutor="SELECT * FROM profesor WHERE id=".$fila['profesor_id'].";";
+        $resultTutor=mysqli_query($link,$queryTutor);
+        $nombreTutor=mysqli_fetch_array($resultTutor);
+
+        echo '<div id="content2">
+            <div>
+                <img id="alumno" src="../imagenes/user.png" style="width:10%"/>
+            </div>
+            <div style="margin-top:10px;">
+                <p id="nombre"><b>Nombre: '.$fila['nombre'].' '.$fila['apellidos'].'</b></p>
+                <p id="dni"><b>DNI: '.$fila['dni'].'</b></p>
+                <p id="telefono"><b>Teléfono: '.$fila['telefono'].'</b></p>
+                <p id="email"><b>Email: '.$fila['email'].'</b></p>
+                <p id="empresa"><b>Empresa: '.$nombreEmpresa['nombre'].'</b></p>
+                <p id="profesor"><b>Tutor: '.$nombreTutor['nombre'].' '.$nombreTutor['apellidos'].'</b></p>
+            </div>
+        </div>';
+    }
+    ?>
+
 	</div>
 	
 	
