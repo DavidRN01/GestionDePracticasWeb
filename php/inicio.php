@@ -16,7 +16,7 @@ include("conexion_BD.php");
 
 </head>
 
-<body style=" background-color: linear-gradient(to left, #F5FAFF, #C4E0FC);">
+<body>
 
     <a class="btn btn-primary" style="position:fixed; top:0; margin:20px; color:white;" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="offcanvasExample">
         Desplegar Menu
@@ -45,37 +45,35 @@ include("conexion_BD.php");
         </div>
     </div>
 
-    <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="container w-75 mt-5 ">
-            <div class="row align-items-stretch">
-
-                <?php
-                //Conectamos con la BD
-                $link = conectar();
-                $queryAlumno = "SELECT * FROM alumno WHERE id=" . $_SESSION['id_alumno'] . ";";
+    <div class="container w-75 mt-5 ">
+        <div class="row" style="margin-top: 270px">
+            <?php
+            //Conectamos con la BD
+            $link = conectar();
+            $queryAlumno = "SELECT * FROM alumno WHERE id=" . $_SESSION['id_alumno'] . ";";
 
 
 
-                //Ejecutar consulta
-                $result = mysqli_query($link, $queryAlumno);
-                if ($fila = mysqli_fetch_array($result)) {
+            //Ejecutar consulta
+            $result = mysqli_query($link, $queryAlumno);
+            if ($fila = mysqli_fetch_array($result)) {
 
-                    //Sacamos los datos de la empresa
-                    $queryEmpresa = "SELECT * FROM empresa WHERE id=" . $fila['empresa_id'] . ";";
-                    $resultEmpresa = mysqli_query($link, $queryEmpresa);
-                    $nombreEmpresa = mysqli_fetch_array($resultEmpresa);
+                //Sacamos los datos de la empresa
+                $queryEmpresa = "SELECT * FROM empresa WHERE id=" . $fila['empresa_id'] . ";";
+                $resultEmpresa = mysqli_query($link, $queryEmpresa);
+                $nombreEmpresa = mysqli_fetch_array($resultEmpresa);
 
-                    //Sacamos los datos del tutor
-                    $queryTutor = "SELECT * FROM profesor WHERE id=" . $fila['profesor_id'] . ";";
-                    $resultTutor = mysqli_query($link, $queryTutor);
-                    $nombreTutor = mysqli_fetch_array($resultTutor);
+                //Sacamos los datos del tutor
+                $queryTutor = "SELECT * FROM profesor WHERE id=" . $fila['profesor_id'] . ";";
+                $resultTutor = mysqli_query($link, $queryTutor);
+                $nombreTutor = mysqli_fetch_array($resultTutor);
 
 
                 echo '<div id="content">
-                    <div>
+                    <div style="margin-left:10px;">
                     <img id="alumno" src="../imagenes/user.png" style="width:10%"/>
                     </div>
-                    <div style="margin-top:10px;">
+                    <div style="margin-top:10px; margin-left:30px;">
                         <p id="nombre"><b>Nombre: ' . $fila['nombre'] . ' ' . $fila['apellidos'] . '</b></p>
                         <p id="dni"><b>DNI: ' . $fila['dni'] . '</b></p>
                         <p id="telefono"><b>Teléfono: ' . $fila['telefono'] . '</b></p>
@@ -84,9 +82,8 @@ include("conexion_BD.php");
                         <p id="profesor"><b>Tutor: ' . $nombreTutor['nombre'] . ' ' . $nombreTutor['apellidos'] . '</b></p>
                     </div>
                 </div>';
-                }
-                ?>
-            </div>
+            }
+            ?>
         </div>
     </div>
 

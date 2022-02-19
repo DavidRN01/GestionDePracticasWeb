@@ -20,6 +20,7 @@ function confirmar(id) {
 function validaractividad() {
 	var tipo = document.getElementById("tipo_practica").value;
 	var actividad = document.getElementById("actividad").value;
+	var fecha = document.getElementById("fecha").value;
 	var ok = true;
 
 	if (tipo != "dual" && tipo != "Dual" && tipo != "FCT" && tipo != "fct") {
@@ -35,6 +36,15 @@ function validaractividad() {
 		Swal.fire({
 			title: 'Error',
 			text: 'Debes insertar un nombre para la actividad',
+			icon: 'error',
+			confirmButtonText: 'Reintentar'
+		})
+		ok = false;
+	}
+	if (fecha < 2022-03-21 || fecha > 2022-05-27) {
+		Swal.fire({
+			title: 'Error',
+			text: 'Debes insertar una fecha válida',
 			icon: 'error',
 			confirmButtonText: 'Reintentar'
 		})

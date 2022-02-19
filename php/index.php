@@ -62,12 +62,6 @@
 					<label for="connected" class="form-check-label">Recordar usuario</label>
 				</div>
 
-
-
-				<div class="my-3">
-					<span><a href="#">Recuperar contraseña</a></span>
-				</div>
-
 			</form>
 		</div>
 	</div>

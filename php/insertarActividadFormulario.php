@@ -32,8 +32,8 @@ include("conexion_BD.php");
         }
 
         body {
-            /*background-color: #E3D3CC;
-            background-image: linear-gradient(to right, #E3D3CC 0%, #FAF4EF 74%);*/
+            background-color: #E3D3CC;
+            background-image: linear-gradient(to right, #E3D3CC 0%, #FAF4EF 74%);
         }
 
         .fondo {
@@ -81,7 +81,7 @@ include("conexion_BD.php");
                             <textarea name="observaciones" rows="4" id="observaciones"></textarea>
 
                             <label>Fecha</label>
-                            <input type="date" name="fecha" id="fecha" min='2022-03-21' max='2022-05-27' />
+                            <input type="date" name="fecha" id="fecha" min='2022-03-21' max='2022-05-27' value="2022-03-21"/>
 
                             <button type="submit">Enviar</button>
 

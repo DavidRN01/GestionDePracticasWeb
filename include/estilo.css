@@ -16,11 +16,10 @@
 }
 
 body {
-   background-color: #F5FAFF !important;
-   background-color: -webkit-linear-gradient(right, #F5FAFF, #C4E0FC) !important;
-   background-color: -moz-linear-gradient(right, #F5FAFF, #C4E0FC) !important;
-   background-color: linear-gradient(to left, #F5FAFF, #C4E0FC) !important;
-
+   background: #F5FAFF;
+   background: -webkit-linear-gradient(right, #F5FAFF, #C4E0FC);
+   background: -moz-linear-gradient(right, #F5FAFF, #C4E0FC);
+   background: linear-gradient(to left, #F5FAFF, #C4E0FC);
 }
 
 a:link {
@@ -31,30 +30,25 @@ a:link {
 }
 
 h2 {
-   color: rgb(128, 0, 64);
+   color: #000;
+   font-family: "Arial", sans-serif;
    text-align: center;
+
 }
+
+
+ /* tabla */
 
 #centrado {
    text-align: center;
 }
 
-
-/* tablas */
-
-#content table {
-   margin: 20px auto;
-   border-collapse: collapse;
-   background-color: #fff;
+thead tr {
+   text-align: center;
 }
 
-#content td, #content th {
-   border-bottom: 1px solid #000;
-   padding: 5px;
-}
-
-#content th {
-   background-color: rgb(142, 184, 225);
+tbody td {
+   text-align: center;
 }
 
 
@@ -78,9 +72,9 @@ p, h1, form, button {
 #stylized {
    border: solid 2px #b7ddf2;
    background: #ebf4fb;
-   position: relative;
+   position: absolute;
    top: 250px;
-   
+   left: 290px;
 }
 
 #stylized h1 {
