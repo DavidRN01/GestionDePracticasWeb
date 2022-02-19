@@ -1,9 +1,19 @@
-/*utilizado cuando vamos a borrar, insertar, o editar una actividad*/
-function confirmar() {
-	if (!confirm("¿Estás seguro?"))
-		return false;
-	else
-		return true;
+/*utilizado cuando vamos a borrar una actividad*/
+function confirmar(id) {
+
+	Swal.fire({  
+		title: '¿Quieres eliminar esta actividad?',  
+		showDenyButton: true,
+		confirmButtonText: 'Confirmar',
+		denyButtonText: 'Cancelar',
+	  }).then((result) => {  
+		  if (result.isConfirmed) {
+			window.location.href = "borrarActividad.php?id_actividad=" + id;
+		  } else if (result.isDenied) {
+			return false
+		   }
+	  });
+		
 }
 
 /*usado para asegurar que los datos de los formularios son correctos*/
@@ -13,11 +23,21 @@ function validaractividad() {
 	var ok = true;
 
 	if (tipo != "dual" && tipo != "Dual" && tipo != "FCT" && tipo != "fct") {
-		alert("El tipo de práctica tiene que ser FCT o Dual");
+		Swal.fire({
+			title: 'Error',
+			text: 'El tipo de práctica debe ser FCT o Dual',
+			icon: 'error',
+			confirmButtonText: 'Reintentar'
+		})
 		ok = false;
 	}
 	if (actividad.length == 0) {
-		alert("Nombre de actividad requerido");
+		Swal.fire({
+			title: 'Error',
+			text: 'Debes insertar un nombre para la actividad',
+			icon: 'error',
+			confirmButtonText: 'Reintentar'
+		})
 		ok = false;
 	}
 	return ok;

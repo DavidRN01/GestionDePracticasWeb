@@ -12,36 +12,11 @@ include("conexion_BD.php");
     <link type="text/css" href="../include/estilo.css" rel="stylesheet" />
 
     <!-- Bootstrap de CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        textarea {
-            float: left;
-            font-size: 12px;
-            padding: 4px 2px;
-            border: solid 1px #aacfe4;
-            width: 200px;
-            margin: 2px 0 20px 10px;
-            resize: none
-        }
-
-        body {
-            background-color: #E3D3CC;
-            background: linear-gradient(to left, #F5FAFF, #C4E0FC);
-        }
-
-        .fondo {
-            background-image: url(imagenes/header.jpg);
-            background-position: 10% 25%;
-            background-size: cover;
-            height: 30vh;
-
-        }
-    </style>
 
 </head>
 
-<body>
+<body style=" background-color: linear-gradient(to left, #F5FAFF, #C4E0FC);">
 
     <a class="btn btn-primary" style="position:fixed; top:0; margin:20px; color:white;" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="offcanvasExample">
         Desplegar Menu
@@ -70,51 +45,49 @@ include("conexion_BD.php");
         </div>
     </div>
 
-    <div id="wrapper">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="container w-75 mt-5 ">
+            <div class="row align-items-stretch">
 
-        <div id="main">
-
-            <?php
-            //Conectamos con la BD
-            $link = conectar();
-            $queryAlumno = "SELECT * FROM alumno WHERE id=" . $_SESSION['id_alumno'] . ";";
+                <?php
+                //Conectamos con la BD
+                $link = conectar();
+                $queryAlumno = "SELECT * FROM alumno WHERE id=" . $_SESSION['id_alumno'] . ";";
 
 
 
-            //Ejecutar consulta
-            $result = mysqli_query($link, $queryAlumno);
-            if ($fila = mysqli_fetch_array($result)) {
+                //Ejecutar consulta
+                $result = mysqli_query($link, $queryAlumno);
+                if ($fila = mysqli_fetch_array($result)) {
 
-                //Sacamos los datos de la empresa
-                $queryEmpresa = "SELECT * FROM empresa WHERE id=" . $fila['empresa_id'] . ";";
-                $resultEmpresa = mysqli_query($link, $queryEmpresa);
-                $nombreEmpresa = mysqli_fetch_array($resultEmpresa);
+                    //Sacamos los datos de la empresa
+                    $queryEmpresa = "SELECT * FROM empresa WHERE id=" . $fila['empresa_id'] . ";";
+                    $resultEmpresa = mysqli_query($link, $queryEmpresa);
+                    $nombreEmpresa = mysqli_fetch_array($resultEmpresa);
 
-                //Sacamos los datos del tutor
-                $queryTutor = "SELECT * FROM profesor WHERE id=" . $fila['profesor_id'] . ";";
-                $resultTutor = mysqli_query($link, $queryTutor);
-                $nombreTutor = mysqli_fetch_array($resultTutor);
+                    //Sacamos los datos del tutor
+                    $queryTutor = "SELECT * FROM profesor WHERE id=" . $fila['profesor_id'] . ";";
+                    $resultTutor = mysqli_query($link, $queryTutor);
+                    $nombreTutor = mysqli_fetch_array($resultTutor);
 
-                echo '<div id="content2">
-            <div>
-                <img id="alumno" src="../imagenes/user.png" style="width:10%"/>
+
+                echo '<div id="content">
+                    <div>
+                    <img id="alumno" src="../imagenes/user.png" style="width:10%"/>
+                    </div>
+                    <div style="margin-top:10px;">
+                        <p id="nombre"><b>Nombre: ' . $fila['nombre'] . ' ' . $fila['apellidos'] . '</b></p>
+                        <p id="dni"><b>DNI: ' . $fila['dni'] . '</b></p>
+                        <p id="telefono"><b>Teléfono: ' . $fila['telefono'] . '</b></p>
+                        <p id="email"><b>Email: ' . $fila['email'] . '</b></p>
+                        <p id="empresa"><b>Empresa: ' . $nombreEmpresa['nombre'] . '</b></p>
+                        <p id="profesor"><b>Tutor: ' . $nombreTutor['nombre'] . ' ' . $nombreTutor['apellidos'] . '</b></p>
+                    </div>
+                </div>';
+                }
+                ?>
             </div>
-            <div style="margin-top:10px;">
-                <p id="nombre"><b>Nombre: ' . $fila['nombre'] . ' ' . $fila['apellidos'] . '</b></p>
-                <p id="dni"><b>DNI: ' . $fila['dni'] . '</b></p>
-                <p id="telefono"><b>Teléfono: ' . $fila['telefono'] . '</b></p>
-                <p id="email"><b>Email: ' . $fila['email'] . '</b></p>
-                <p id="empresa"><b>Empresa: ' . $nombreEmpresa['nombre'] . '</b></p>
-                <p id="profesor"><b>Tutor: ' . $nombreTutor['nombre'] . ' ' . $nombreTutor['apellidos'] . '</b></p>
-            </div>
-        </div>';
-            }
-            ?>
-
         </div>
-
-
-
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -128,9 +101,6 @@ include("conexion_BD.php");
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="../scripts/validaciones.js"></script>
-
 </body>
 
 </html>

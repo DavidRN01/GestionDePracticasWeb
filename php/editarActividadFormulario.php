@@ -12,6 +12,9 @@ include("conexion_BD.php");
     <title>Aplicación Gestión Dual</title>
     <link type="text/css" href="../include/estilo.css" rel="stylesheet" />
     <script type="text/javascript" src="../scripts/validaciones.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
     <style>
         textarea {
@@ -31,8 +34,6 @@ include("conexion_BD.php");
     <div id="wrapper">
 
         <div id="main">
-
-            <?php include("../include/navbar.php"); ?>
 
             <div id="content">
 
@@ -82,7 +83,7 @@ include("conexion_BD.php");
 
                         <input type="hidden" name="id" id="id" value="<?php echo utf8_encode($fila["id"]); ?>">
 
-                        <button type="submit" onclick="return confirmar()">Editar</button>
+                        <button type="submit">Editar</button>
 
                         <div class="spacer"></div>
 

@@ -13,6 +13,9 @@ include("conexion_BD.php");
     <title>Aplicación Gestión Dual</title>
     <link type="text/css" href="../include/estilo.css" rel="stylesheet" />
     <script type="text/javascript" src="../scripts/validaciones.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
     <!-- Bootstrap de CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -49,14 +52,12 @@ include("conexion_BD.php");
 
             <div class="mb-4">
 
-                <?php include("../include/navbar.php"); ?>
-
                 <div class="mb-4">
 
                     <h2>Insertar actividades</h2>
 
                     <div id="stylized" class="myform">
-                        <form id="form" name="form" method="post" action="insertarActividad.php" onsubmit="return validaractividad()" enctype="multipart/form-data">
+                        <form id="formInsertar" name="formInsertar" method="post" action="insertarActividad.php" onsubmit="return validaractividad();" enctype="multipart/form-data">
 
                             <h1 class="fw-bold text-center py-5">Datos de la actividad</h1>
                             <p></p>
@@ -82,7 +83,7 @@ include("conexion_BD.php");
                             <label>Fecha</label>
                             <input type="date" name="fecha" id="fecha" min='2022-03-21' max='2022-05-27' />
 
-                            <button type="submit" onclick="return confirmar()">Enviar</button>
+                            <button type="submit">Enviar</button>
 
                             <div class="spacer"></div>
 

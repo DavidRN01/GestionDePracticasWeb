@@ -10,21 +10,11 @@ include("conexion_BD.php");
 <head>
     <meta charset="UTF-8">
     <title>Aplicación Gestión Dual</title>
-    <link type="text/css" href="../include/prueba.css" rel="stylesheet" />
     <link type="text/css" href="../include/estilo.css" rel="stylesheet" />
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#tabla').DataTable();
-        });
-    </script>
 
 </head>
 
@@ -37,89 +27,7 @@ include("conexion_BD.php");
 
     //Ejecutar consulta
     $result = mysqli_query($link, $query);
-
-    //Mostar resultados en tabla
-    //Primero la fila de títulos
     ?>
-
-
-    <style>
-        a:link {
-            text-decoration: none !important;
-            font-family: "Arial", sans-serif;
-            font-weight: bold;
-            color: #000;
-        }
-
-        body {
-            background: #F5FAFF;
-            background: -webkit-linear-gradient(right, #F5FAFF, #C4E0FC);
-            background: -moz-linear-gradient(right, #F5FAFF, #C4E0FC);
-            background: linear-gradient(to left, #F5FAFF, #C4E0FC);
-        }
-    </style>
-
-    <div id="wrapper">
-
-        <div id="main ">
-            <div class="container w-75 mt-5 ">
-                <div class="row align-items-stretch">
-                    <div id="content">
-
-                        <h2>Actividades</h2>
-                        <table id="tabla" class="display">
-                            <tr>
-                                <th></th>
-                                <th>Tipo</th>
-                                <th>Horas</th>
-                                <th>Actividad</th>
-                                <th>Observaciones</th>
-                                <th>Fecha</th>
-                                <th></th>
-                            </tr>
-
-                            <?php
-
-                            while ($fila = mysqli_fetch_array($result)) {
-                                echo "<tr>
-                    <td><a href='editarActividadFormulario.php?id_actividad=" . $fila["id"] . "'>
-                    <img src='../imagenes/editar.png' width='20'></a></td>
-                    <td>" . utf8_encode($fila['tipo_practica']) . "</td>
-                    <td>" . utf8_encode($fila['total_horas']) . "</td>
-                    <td>" . utf8_encode($fila['actividad_realizada']) . "</td>
-                    <td>" . utf8_encode($fila['observaciones']) . "</td>
-                    <td>" . utf8_encode($fila['fecha']) . "</td>
-                    <td><a onclick='return confirmar()'
-                        href='borrarActividad.php?id_actividad=" . $fila["id"] . "'>
-                    <img src='../imagenes/eliminar.gif' width='20'></a></td>
-                </tr>";
-                            }
-
-                            mysqli_close($link);
-                            ?>
-
-                        </table>
-
-                        <div id="centrado">
-                            <form id="form1" name="form1" method="post" action="insertarActividadFormulario.php">
-                                <input type="submit" name="enviar" id="enviar" value="Insertar actividades" />
-                            </form>
-                        </div>
-
-                        <?php
-                        if (isset($_SESSION["error"])) {
-                            echo "<div id='mensaje'>" . $_SESSION["error"] . "</div>";
-                            unset($_SESSION["error"]);
-                        }
-
-                        ?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <a class="btn btn-primary" style="position:fixed; top:0; margin:20px; color:white;" data-bs-toggle="offcanvas" href="#menu" role="button" aria-controls="offcanvasExample">
         Desplegar Menu
@@ -148,8 +56,64 @@ include("conexion_BD.php");
         </div>
     </div>
 
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="container w-75 mt-5 ">
+                <div class="row align-items-stretch">
+                    <div id="content">
 
-    </div>
+                        <h2>Actividades</h2>
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Tipo</th>
+                                <th>Horas</th>
+                                <th>Actividad</th>
+                                <th>Observaciones</th>
+                                <th>Fecha</th>
+                                <th></th>
+                            </tr>
+
+                            <?php
+
+                            while ($fila = mysqli_fetch_array($result)) {
+                                echo "<tr>
+                                <td><a href='editarActividadFormulario.php?id_actividad=" . $fila["id"] . "'>
+                                <img src='../imagenes/editar.png' width='20'></a></td>
+                                <td>" . utf8_encode($fila['tipo_practica']) . "</td>
+                                <td>" . utf8_encode($fila['total_horas']) . "</td>
+                                <td>" . utf8_encode($fila['actividad_realizada']) . "</td>
+                                <td>" . utf8_encode($fila['observaciones']) . "</td>
+                                <td>" . utf8_encode($fila['fecha']) . "</td>
+                                <td><a onclick='return confirmar(".$fila['id'].")'>
+                                <img src='../imagenes/eliminar.gif' width='20'></a></td>
+                            </tr>";
+                            }
+                            
+
+                            mysqli_close($link);
+                            ?>
+
+                        </table>
+
+                        <div id="centrado">
+                            <form id="form1" name="form1" method="post" action="insertarActividadFormulario.php">
+                                <input type="submit" class="btn btn-info" style="color: white;" name="enviar" id="enviar" value="Insertar actividades" />
+                            </form>
+                        </div>
+
+                        <?php
+                        if (isset($_SESSION["error"])) {
+                            echo "<div id='mensaje'>" . $_SESSION["error"] . "</div>";
+                            unset($_SESSION["error"]);
+                        }
+
+                        ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
