@@ -32,8 +32,8 @@ include("conexion_BD.php");
         }
 
         body {
-            background-color: #E3D3CC;
-            background-image: linear-gradient(to right, #E3D3CC 0%, #FAF4EF 74%);
+            /*background-color: #E3D3CC;
+            background-image: linear-gradient(to right, #E3D3CC 0%, #FAF4EF 74%);*/
         }
 
         .fondo {

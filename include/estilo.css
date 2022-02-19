@@ -16,10 +16,10 @@
 }
 
 body {
-   background: #F5FAFF;
-   background: -webkit-linear-gradient(right, #F5FAFF, #C4E0FC);
-   background: -moz-linear-gradient(right, #F5FAFF, #C4E0FC);
-   background: linear-gradient(to left, #F5FAFF, #C4E0FC);
+   background-color: #F5FAFF !important;
+   background-color: -webkit-linear-gradient(right, #F5FAFF, #C4E0FC) !important;
+   background-color: -moz-linear-gradient(right, #F5FAFF, #C4E0FC) !important;
+   background-color: linear-gradient(to left, #F5FAFF, #C4E0FC) !important;
 
 }
 
@@ -78,9 +78,9 @@ p, h1, form, button {
 #stylized {
    border: solid 2px #b7ddf2;
    background: #ebf4fb;
-   position: absolute;
+   position: relative;
    top: 250px;
-   left: 290px;
+   
 }
 
 #stylized h1 {
