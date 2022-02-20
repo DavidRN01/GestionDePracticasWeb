@@ -51,32 +51,35 @@ include("conexion_BD.php");
         </div>
     </div>
 
+    <?php
+    //Conectamos con la BD
+    $link = conectar();
+    $queryAlumno = "SELECT * FROM alumno WHERE id=" . $_SESSION['id_alumno'] . ";";
+
+    //Ejecutar consulta
+    $result = mysqli_query($link, $queryAlumno);
+    $fila = mysqli_fetch_array($result)
+    ?>
+
+
     <div id="content" style="padding:10px 20px;">
         <div class="container mt-3">
-            <h2>Datos de la actividad</h2>
-            <form id="formInsertar" name="formInsertar" method="post" action="insertarActividad.php" onsubmit="return validaractividad();" enctype="multipart/form-data">
+            <h2>Datos de la cuenta</h2>
+            <form id="formEditar" name="formEditar" method="post" action="editarActividad.php" onsubmit="return validarperfil()" enctype="multipart/form-data">
                 <div class="form-floating mb-3 mt-3">
-                    <input type="text" class="form-control" id="tipo_practica" placeholder="Ingrese el tipo de practica" name="tipo_practica">
-                    <label for="tipo_practica">Ingrese el tipo de practica</label>
+                    <input type="text" class="form-control" placeholder="Cambia tu email" name="email" id="email" value="<?php echo utf8_encode($fila["email"]); ?>" />
+                    <label for="email">Email</label>
                 </div>
-                <div class="form-floating mt-3 mb-3">
-                    <input type="number" class="form-control" id="horas" placeholder="Introduce el número de horas" name="horas" min="0.5" max="6" step="0.5" value="0.5">
-                    <label for="horas">Total de horas</label>
+                <div class="form-floating mb-3 mt-3">
+                    <input type="password" class="form-control" name="password" placeholder="Introduce la nueva contraseña" id="password" />
+                    <label for="password">Contraseña</label>
                 </div>
-                <div class="form-floating mt-3 mb-3">
-                    <input type="text" class="form-control" id="actividad" placeholder="Ingrese la actividad realizada" name="actividad">
-                    <label for="actividad">Ingrese la actividad realizada</label>
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="Confirme la nueva contraseña" />
+                    <label for="actividad">Confirmar contraseña</label>
                 </div>
-                <div class="form-floating mt-3 mb-3">
-                    <textarea class="form-control" id="observaciones" name="observaciones" placeholder="Ingrese la observación"></textarea>
-                    <label for="observaciones">Observaciones</label>
-                </div>
-                <div class="form-floating mt-3 mb-3">
-                    <input type="date" class="form-control" name="fecha" id="fecha" min='2022-03-21' max='2022-05-27' value="2022-03-21" />
-                    <label for="fecha">Fecha</label>
-                </div>
-                <button style="margin-bottom:20px;" type="submit" class="btn btn-primary">Enviar</button>
-            </form>
+
+                <button style="margin-bottom:20px;" type="submit" class="btn btn-primary">Guardar</button>
         </div>
     </div>
 

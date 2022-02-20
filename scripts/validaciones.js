@@ -52,3 +52,31 @@ function validaractividad() {
 	}
 	return ok;
 }
+
+/*usado para validar los datos del perfil*/
+function validarperfil() {
+	var password = document.getElementById("password").value;
+	var passwordConfirm = document.getElementById("passwordConfirm").value;
+
+	var ok = true;
+
+	if(password.length < 8) {
+		Swal.fire({
+			title: 'Error',
+			text: 'La contraseña debe tener al menos 8 caracteres',
+			icon: 'error',
+			confirmButtonText: 'Reintentar'
+		})
+		ok = false;
+	}
+	if(password != passwordConfirm) {
+		Swal.fire({
+			title: 'Error',
+			text: 'La contraseña de confirmación es distinta',
+			icon: 'error',
+			confirmButtonText: 'Reintentar'
+		})
+		ok = false;
+	}
+	return ok;
+}

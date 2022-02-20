@@ -46,7 +46,7 @@ include("conexion_BD.php");
     </div>
 
     <div class="container w-75 mt-5 ">
-        <div class="row" style="margin-top: 270px">
+        <div class="row" style="margin-top: 100px; margin-bottom: 100px;">
             <?php
             //Conectamos con la BD
             $link = conectar();
@@ -68,21 +68,48 @@ include("conexion_BD.php");
                 $resultTutor = mysqli_query($link, $queryTutor);
                 $nombreTutor = mysqli_fetch_array($resultTutor);
 
-
                 echo '<div id="content">
-                    <div style="margin-left:10px;">
-                    <img id="alumno" src="../imagenes/user.png" style="width:10%"/>
+                <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-3 border-right">
+                    <a href="editarPerfilFormulario.php">
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Editar Perfil</button></div>
+                    </a>
+                        <div class="d-flex flex-column align-items-center text-center p-3"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">'.$fila['observaciones'].'</span></div>
                     </div>
-                    <div style="margin-top:10px; margin-left:30px;">
-                        <p id="nombre"><b>Nombre: ' . $fila['nombre'] . ' ' . $fila['apellidos'] . '</b></p>
-                        <p id="dni"><b>DNI: ' . $fila['dni'] . '</b></p>
-                        <p id="telefono"><b>Teléfono: ' . $fila['telefono'] . '</b></p>
-                        <p id="email"><b>Email: ' . $fila['email'] . '</b></p>
-                        <p id="empresa"><b>Empresa: ' . $nombreEmpresa['nombre'] . '</b></p>
-                        <p id="profesor"><b>Tutor: ' . $nombreTutor['nombre'] . ' ' . $nombreTutor['apellidos'] . '</b></p>
+                    <div class="col-md-9 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3"><img width="300px" src="../imagenes/cesur.png"></div>
+                        <div class="p-3 py-5" style="margin-top: 0px">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Perfil</h4>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4"><label class="labels"><b>Nombre</b></label><p>'. $fila['nombre'] .' </p></div>
+                                <div class="col-md-4"><label class="labels"><b>Apellidos</b></label><p> ' . $fila['apellidos'] . '</p></div>
+                                <div class="col-md-4"><label class="labels"><b>Email</b></label><p> ' . $fila['email'] . '</p></div>
+                            </div>
+                            <div class="row mt-3" style="margin-top: 20px">
+                                <div class="col-md-4"><label class="labels"><b>Teléfono</b></label><p> ' . $fila['telefono'] . '</p></div>
+                                <div class="col-md-4"><label class="labels"><b>DNI</b></label><p>' . $fila['dni'] . ' </p></div>
+                                <div class="col-md-4"><label class="labels"><b>Fecha de nacimiento</b></label><p>' . $fila['fecha_nacimiento'] . ' </p></div>                 
+
+                            </div>
+                            <div class="row mt-3" style="margin-top: 20px">
+                                <div class="col-md-4"><label class="labels"><b>Empresa</b></label><p> ' . $nombreEmpresa['nombre'] . '</p></div>
+                                <div class="col-md-4"><label class="labels"><b>Tutor</b></label><p> ' . $nombreTutor['nombre'] . ' ' . $nombreTutor['apellidos'] . '</p></div>               
+
+                            </div>
+                           
+                        </div>
+
                     </div>
-                </div>';
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>';
             }
+
             ?>
         </div>
     </div>
